@@ -34,7 +34,7 @@ public class Grid {
     }
 
     public int[][] cellsWithRulesApplied() {
-        int[][] newCells = new int[this.scale][this.scale];
+        int[][] newCells = this.cells;
 
         return newCells;
     }

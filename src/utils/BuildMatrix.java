@@ -1,14 +1,18 @@
 package utils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class BuildMatrix {
     /***
-     *   The cellsPosition can be like a #0123#23 where each # is a line down
+     *   The cellsPosition can be like a #0111#11 where each # is a line down
      */
     public int[][] build(String cellsPosition, int scale) {
         int matrix[][] = new int[scale][scale];
         char[] positions = cellsPosition.toCharArray();
+
+        if (!isCorrectPositions(cellsPosition)) return matrix;
 
         int line = 0;
         int positionIndex = 0;
@@ -33,5 +37,19 @@ public class BuildMatrix {
         }
 
         return matrix;
+    }
+
+    public boolean isCorrectPositions(String cellsPosition) {
+        char[] positions = cellsPosition.toCharArray();
+        List<Character> validPositions = new ArrayList<>();
+        validPositions.add('#');
+        validPositions.add('1');
+        validPositions.add('2');
+
+        for (char position : positions) {
+            if (!validPositions.contains(position)) return false;
+        }
+
+        return true;
     }
 }
