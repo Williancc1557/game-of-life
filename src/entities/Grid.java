@@ -1,6 +1,7 @@
 package entities;
 
 import utils.BuildMatrix;
+import utils.UseGolRules;
 
 import java.util.concurrent.TimeUnit;
 
@@ -13,36 +14,33 @@ public class Grid {
     private int[][] cells;
 
     public Grid(String cellsPosition) {
-        this.cells = new BuildMatrix().build(cellsPosition, scale);
+        this.cells = BuildMatrix.build(cellsPosition, scale);
     }
 
     public void handle() {
-        for (this.step = 0; this.step < stepLimit; this.step++) {
-            try {
-                loadStep();
-                showGrid();
-                TimeUnit.MILLISECONDS.sleep(this.speed);
-                System.out.println("\n" + "------------------------------" + "\n");
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+        try {
+            showGrid();
+            TimeUnit.MILLISECONDS.sleep(this.speed);
+            for (this.step = 0; this.step < stepLimit; this.step++) {
+                    loadStep();
+                    showGrid();
+                    TimeUnit.MILLISECONDS.sleep(this.speed);
+                    System.out.println("\n" + "------------------------------" + "\n");
             }
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 
-    public void loadStep() {
-        //this.cells = cellsWithRulesApplied();
-    }
-
-    public int[][] cellsWithRulesApplied() {
-        int[][] newCells = this.cells;
-
-        return newCells;
+    private void loadStep() {
+        UseGolRules useGolRules = new UseGolRules(this.cells);
+        this.cells = useGolRules.buildMatrix();
     }
 
     private void showGrid() {
         for (int line = 0; line < this.scale; line++) {
             for (int column = 0; column < this.scale; column++) {
-                String cell = this.cells[line][column] == 1 ? "X" : "0";
+                String cell = this.cells[line][column] == 1 ? (char)27 + "[36mX" : (char)27 + "[33m0";
                 System.out.print(" " + cell + " ");
             }
             System.out.print("\n");
