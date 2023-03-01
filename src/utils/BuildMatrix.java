@@ -14,8 +14,8 @@ public class BuildMatrix {
         int positionIndex = 0;
         while (line < scale) {
             for (int column = 0; column < scale; column++) {
-                char position = positions[positionIndex];
-                switch (position) {
+                char positionLetter = positions[positionIndex];
+                switch (positionLetter) {
                     case '#':
                         line++;
                         column = -1;
@@ -30,10 +30,6 @@ public class BuildMatrix {
             }
 
             if (positionIndex == positions.length - 1) break;
-        }
-
-        for (int[] l : matrix) {
-            System.out.println(Arrays.toString(l));
         }
 
         return matrix;
