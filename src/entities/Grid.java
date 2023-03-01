@@ -13,4 +13,14 @@ public class Grid {
     public Grid(String cellsPosition) {
         this.cells = new BuildMatrix().build(cellsPosition, scale);
     }
+
+    private void showGrid() {
+        for (int line = 0; line < this.scale; line++) {
+            for (int column = 0; column < this.scale; column++) {
+                String cell = this.cells[line][column] == 1 ? "X" : "0";
+                System.out.print(" " + cell + " ");
+            }
+            System.out.print("\n");
+        }
+    }
 }
