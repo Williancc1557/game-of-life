@@ -15,5 +15,6 @@ public class Main {
         String cellsPosition = scan.nextLine();
 
         Grid grid = new Grid(cellsPosition);
+        grid.handle();
     }
 }
