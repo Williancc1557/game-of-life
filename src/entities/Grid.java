@@ -16,7 +16,10 @@ public class Grid {
     private int height;
 
     public Grid(String cellsPosition, int speed, int limit, int width, int height) {
-        this.cells = BuildMatrix.build(cellsPosition, width, height);
+        boolean isRandomGrid = cellsPosition.equals("rnd");
+        this.cells = isRandomGrid ?
+                BuildMatrix.buildRandom(width, height) : BuildMatrix.build(cellsPosition, width, height);
+
         this.speed = speed;
         this.stepLimit = limit;
         this.width = width;

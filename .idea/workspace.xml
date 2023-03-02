@@ -5,10 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e031788-a353-461c-8dc7-0761803a169a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GameOfLife.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameOfLife.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameOfLife.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameOfLife.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameOfLife.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/Grid.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Grid.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/Grid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Grid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/BuildMatrix.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/BuildMatrix.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/BuildMatrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/BuildMatrix.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/UseGolRules.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/UseGolRules.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/UseGolRules.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/UseGolRules.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +45,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
+    "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
@@ -49,6 +54,21 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="GameOfLife" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="GameOfLife" />
+      <module name="GameOfLife" />
+      <option name="PROGRAM_PARAMETERS" value="w=10 h=10 g=500 s=1000 p=&quot;rnd&quot; " />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.GameOfLife" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -76,5 +96,8 @@
         <PinnedItemInfo parentTag="java.lang.Integer" memberName="value" />
       </pinned-members>
     </pin-to-top-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/GameOfLife$GameOfLife.ic" NAME="GameOfLife Coverage Results" MODIFIED="1677794705209" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

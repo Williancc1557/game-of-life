@@ -25,10 +25,8 @@ public class GameOfLife {
     }
 
     public static String getParamValue(String[] args, String field) {
-        System.out.println(Arrays.toString(args));
         for (String param : args) {
             String[] keyAndValue = param.split("=");
-            System.out.println(Arrays.toString(keyAndValue));
             if (keyAndValue[0].equals(field)) {
                 return keyAndValue[1];
             }

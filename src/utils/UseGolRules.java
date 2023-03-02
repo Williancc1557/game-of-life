@@ -5,13 +5,13 @@ import java.util.List;
 
 public class UseGolRules {
     public int[][] matrix;
-    public int heigth;
+    public int height;
     public int width;
 
     public UseGolRules(int[][] matrix, int width, int height) {
         this.matrix = matrix;
         this.width = width;
-        this.heigth = height;
+        this.height = height;
     }
 
     public int[][] buildMatrix() {
@@ -32,7 +32,7 @@ public class UseGolRules {
     private List<List<Integer>> reviveCells() {
         List<List<Integer>> cellsToRevive = new ArrayList<>();
 
-        for (int line = 0; line < this.heigth; line++) {
+        for (int line = 0; line < this.height; line++) {
             for (int column = 0; column < this.width; column++) {
                 boolean isDeadCell = this.matrix[line][column] == 0;
                 if (isDeadCell) {
@@ -54,7 +54,7 @@ public class UseGolRules {
     private List<List<Integer>> deleteCells() {
         List<List<Integer>> cellsToDelete = new ArrayList<>();
 
-        for (int line = 0; line < this.heigth; line++) {
+        for (int line = 0; line < this.height; line++) {
             for (int column = 0; column < this.width; column++) {
                 boolean isLivingCell = this.matrix[line][column] == 1;
                 if (isLivingCell) {
@@ -127,7 +127,7 @@ public class UseGolRules {
     }
 
     private boolean isInTheBottom(int line) {
-        return line == this.heigth - 1;
+        return line == this.height - 1;
     }
 
     private boolean isInTheLeft(int column) {
