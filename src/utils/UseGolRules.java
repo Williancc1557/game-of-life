@@ -1,5 +1,9 @@
 package utils;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class UseGolRules {
     public int[][] matrix;
 
@@ -8,8 +12,13 @@ public class UseGolRules {
     }
 
     public int[][] buildMatrix() {
-        reviveCells();
-        deleteCells();
+        List<List<Integer>> cellsToDelete = deleteCells();
+        for (List<Integer> cellLocation : cellsToDelete) {
+            for (int i : cellLocation) {
+                System.out.println(i);
+            }
+        }
+        //reviveCells();
 
        return this.matrix;
     }
@@ -18,18 +27,33 @@ public class UseGolRules {
         for (int line = 0; line < this.matrix.length; line++) {
             for (int column = 0; column < this.matrix.length; column++) {
                 boolean revive = isCellToRevive(line, column);
-                if (revive) this.matrix[line][column] = 1;
+                if (revive) {
+                    this.matrix[line][column] = 1;
+                };
             }
         }
     }
 
-    private void deleteCells() {
+    private List<List<Integer>> deleteCells() {
+        List<List<Integer>> cellsToDelete = new ArrayList<>();
+
         for (int line = 0; line < this.matrix.length; line++) {
             for (int column = 0; column < this.matrix.length; column++) {
-                boolean delete = isCellToDelete(line, column);
-                if (delete) this.matrix[line][column] = 0;
+                boolean isLivingCell = this.matrix[line][column] == 1;
+                if (isLivingCell) {
+                    boolean delete = isCellToDelete(line, column);
+                    if (delete) {
+                        List<Integer> lineAndColumn = new ArrayList<>();
+                        lineAndColumn.add(line);
+                        lineAndColumn.add(column);
+
+                        cellsToDelete.add(lineAndColumn);
+                    }
+                }
             }
         }
+
+        return cellsToDelete;
     }
 
     private boolean isCellToRevive(int line, int column) {
