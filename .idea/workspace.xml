@@ -6,8 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="4e031788-a353-461c-8dc7-0761803a169a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameOfLife.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameOfLife.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameOfLife.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/Grid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Grid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/Grid.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Grid.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/BuildMatrix.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/BuildMatrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/BuildMatrix.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/UseGolRules.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +57,7 @@
     <configuration name="GameOfLife" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="GameOfLife" />
       <module name="GameOfLife" />
-      <option name="PROGRAM_PARAMETERS" value="w=10 h=10 g=500 s=1000 p=&quot;111111111111111111111&quot; " />
+      <option name="PROGRAM_PARAMETERS" value="w=20 h=20 g=500 s=1000 p=&quot;11111&quot; " />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>

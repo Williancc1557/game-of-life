@@ -12,16 +12,16 @@ public class GameOfLife {
         int height = Integer.parseInt(getParamValue(args, "h"));
         String cellsPosition = getParamValue(args, "p");
 
-        if (!cellsPosition.equals("rnd")) {
-            if (!isCorrectPositions(cellsPosition) ) {
-                System.out.println("Invalid cells positions provided. The cells position can be like 1#111#11.");
-                return;
-            }
+        if (!positionsValidation(cellsPosition, width, height)) {
+            return;
+        }
 
-            if (isLargePositions(cellsPosition, width, height)) {
-                System.out.println("Invalid cells length");
-                return;
-            }
+        if (!isWidthCorrect(width) || !isHeightCorrect(height)) {
+            System.out.println("Invalid width or height.\n" +
+                    "correct options:\n" +
+                    "height: 10,20,40\n" +
+                    "width: 10,20,40,80");
+            return;
         }
 
         int speed = Integer.parseInt(getParamValue(args, "s"));
@@ -40,6 +40,22 @@ public class GameOfLife {
         }
 
         throw new RuntimeException("Invalid param provided");
+    }
+
+    public static boolean positionsValidation(String cellsPosition, int width, int height) {
+        if (!cellsPosition.equals("rnd")) {
+            if (!isCorrectPositions(cellsPosition) ) {
+                System.out.println("Invalid cells positions provided. The cells position can be like 1#111#11.");
+                return false;
+            }
+
+            if (isLargePositions(cellsPosition, width, height)) {
+                System.out.println("Invalid cells length.");
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public static boolean isCorrectPositions(String cellsPosition) {
@@ -67,5 +83,27 @@ public class GameOfLife {
         }
 
         return false;
+    }
+
+    public static boolean isWidthCorrect(int width) {
+        List<Integer> valuesAllowed = new ArrayList<>();
+
+        int[] valuesToAdd = {10,20,40,80};
+        for (int value : valuesToAdd) {
+            valuesAllowed.add(value);
+        }
+
+        return valuesAllowed.contains(width);
+    }
+
+    public static boolean isHeightCorrect(int height) {
+        List<Integer> valuesAllowed = new ArrayList<>();
+
+        int[] valuesToAdd = {10,20,40};
+        for (int value : valuesToAdd) {
+            valuesAllowed.add(value);
+        }
+
+        return valuesAllowed.contains(height);
     }
 }

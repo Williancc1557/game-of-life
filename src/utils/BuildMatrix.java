@@ -45,7 +45,6 @@ public class BuildMatrix {
             for (int column = 0; column < width; column++) {
                 Random r = new Random();
                 int value = r.nextInt(2);
-                System.out.println(value);
                 matrix[line][column] = value;
             }
         }
