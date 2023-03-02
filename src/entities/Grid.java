@@ -12,8 +12,8 @@ public class Grid {
     private final int stepLimit;
     private final int speed;
     private int[][] cells;
-    private int width;
-    private int height;
+    private final int width;
+    private final int height;
 
     public Grid(String cellsPosition, int speed, int limit, int width, int height) {
         boolean isRandomGrid = cellsPosition.equals("rnd");

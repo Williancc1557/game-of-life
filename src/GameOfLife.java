@@ -12,9 +12,16 @@ public class GameOfLife {
         int height = Integer.parseInt(getParamValue(args, "h"));
         String cellsPosition = getParamValue(args, "p");
 
-        if (!isCorrectPositions(cellsPosition) && !cellsPosition.equals("rnd")) {
-            System.out.println("Invalid cells positions provided. The cells position can be like 1#111#11.");
-            return;
+        if (!cellsPosition.equals("rnd")) {
+            if (!isCorrectPositions(cellsPosition) ) {
+                System.out.println("Invalid cells positions provided. The cells position can be like 1#111#11.");
+                return;
+            }
+
+            if (isLargePositions(cellsPosition, width, height)) {
+                System.out.println("Invalid cells length");
+                return;
+            }
         }
 
         int speed = Integer.parseInt(getParamValue(args, "s"));
@@ -43,10 +50,22 @@ public class GameOfLife {
         validPositions.add('0');
 
         for (char position : positions) {
-            System.out.println(position);
             if (!validPositions.contains(position)) return false;
         }
 
         return true;
+    }
+
+    public static boolean isLargePositions(String cellsPosition, int width, int height) {
+        String lines[] = cellsPosition.split("#");
+
+        if (lines.length > height) return true;
+
+        for (String line : lines) {
+            int lineWidth = line.toCharArray().length;
+            if (lineWidth > width) return true;
+        }
+
+        return false;
     }
 }
