@@ -1,8 +1,5 @@
 package utils;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class UseGolRules {
     public int[][] matrix;
 
@@ -11,7 +8,8 @@ public class UseGolRules {
     }
 
     public int[][] buildMatrix() {
-       reviveCells();
+        reviveCells();
+        deleteCells();
 
        return this.matrix;
     }
@@ -25,7 +23,26 @@ public class UseGolRules {
         }
     }
 
+    private void deleteCells() {
+        for (int line = 0; line < this.matrix.length; line++) {
+            for (int column = 0; column < this.matrix.length; column++) {
+                boolean delete = isCellToDelete(line, column);
+                if (delete) this.matrix[line][column] = 0;
+            }
+        }
+    }
+
     private boolean isCellToRevive(int line, int column) {
+        int neighbors = neighborCounter(line, column);
+        return  neighbors == 3;
+    }
+
+    private boolean isCellToDelete(int line, int column) {
+        int neighbors = neighborCounter(line, column);
+        return  neighbors <= 1 || neighbors > 3;
+    }
+
+    private int neighborCounter(int line, int column) {
         int counter = 0;
 
         if (!isInTheBottom(line)) {
@@ -61,7 +78,7 @@ public class UseGolRules {
         }
 
 
-        return counter == 3;
+        return counter;
     }
 
     private boolean isInTheTop(int line) {

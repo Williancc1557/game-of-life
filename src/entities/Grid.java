@@ -7,10 +7,10 @@ import java.util.concurrent.TimeUnit;
 
 public class Grid {
     private boolean running;
-    private final int scale = 10;
+    private final int scale = 6;
     private int step;
     private int stepLimit = 500;
-    private final int speed = 1000;
+    private final int speed = 5000;
     private int[][] cells;
 
     public Grid(String cellsPosition) {
@@ -24,8 +24,8 @@ public class Grid {
             for (this.step = 0; this.step < stepLimit; this.step++) {
                     loadStep();
                     showGrid();
-                    TimeUnit.MILLISECONDS.sleep(this.speed);
-                    System.out.println("\n" + "------------------------------" + "\n");
+                TimeUnit.MILLISECONDS.sleep(this.speed);
+                System.out.println("\n" + "------------------------------" + "\n");
             }
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
