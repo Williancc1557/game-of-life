@@ -8,16 +8,14 @@ public class BuildMatrix {
     /***
      *   The cellsPosition can be like a #0111#11 where each # is a line down
      */
-    public static int[][] build(String cellsPosition, int scale) {
-        int matrix[][] = new int[scale][scale];
+    public static int[][] build(String cellsPosition, int width, int height) {
+        int matrix[][] = new int[height][width];
         char[] positions = cellsPosition.toCharArray();
-
-        if (!isCorrectPositions(cellsPosition)) return matrix;
 
         int line = 0;
         int positionIndex = 0;
-        while (line < scale) {
-            for (int column = 0; column < scale; column++) {
+        while (line < height) {
+            for (int column = 0; column < width; column++) {
                 char positionLetter = positions[positionIndex];
                 switch (positionLetter) {
                     case '#':
@@ -39,17 +37,4 @@ public class BuildMatrix {
         return matrix;
     }
 
-    public static boolean isCorrectPositions(String cellsPosition) {
-        char[] positions = cellsPosition.toCharArray();
-        List<Character> validPositions = new ArrayList<>();
-        validPositions.add('#');
-        validPositions.add('1');
-        validPositions.add('0');
-
-        for (char position : positions) {
-            if (!validPositions.contains(position)) return false;
-        }
-
-        return true;
-    }
 }

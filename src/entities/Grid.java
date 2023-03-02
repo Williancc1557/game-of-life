@@ -7,45 +7,79 @@ import java.util.concurrent.TimeUnit;
 
 public class Grid {
     private boolean running;
-    private final int scale = 6;
+    private final int scale = 10;
     private int step;
-    private int stepLimit = 500;
-    private final int speed = 5000;
+    private final int stepLimit;
+    private final int speed;
     private int[][] cells;
+    private int width;
+    private int height;
 
-    public Grid(String cellsPosition) {
-        this.cells = BuildMatrix.build(cellsPosition, scale);
+    public Grid(String cellsPosition, int speed, int limit, int width, int height) {
+        this.cells = BuildMatrix.build(cellsPosition, width, height);
+        this.speed = speed;
+        this.stepLimit = limit;
+        this.width = width;
+        this.height = height;
     }
 
     public void handle() {
-        try {
-            showGrid();
-            TimeUnit.MILLISECONDS.sleep(this.speed);
-            for (this.step = 0; this.step < stepLimit; this.step++) {
-                    loadStep();
-                    showGrid();
-                TimeUnit.MILLISECONDS.sleep(this.speed);
-                System.out.println("\n" + "------------------------------" + "\n");
+        if (stepLimit == 0) {
+            while (true) {
+                loadGame();
+                this.step++;
             }
+        }
+
+        for (this.step = 0; this.step < this.stepLimit; this.step++) {
+            loadGame();
+        }
+    }
+
+    private void loadGame() {
+        showGrid();
+        loadStep();
+
+        sleep();
+
+        System.out.println("\n" + "------------------------------" + "\n");
+    }
+
+    private void sleep() {
+        try {
+            TimeUnit.MILLISECONDS.sleep(this.speed);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
 
     private void loadStep() {
-        UseGolRules useGolRules = new UseGolRules(this.cells);
+        UseGolRules useGolRules = new UseGolRules(this.cells, this.width, this.height);
         this.cells = useGolRules.buildMatrix();
     }
 
     private void showGrid() {
-        for (int line = 0; line < this.scale; line++) {
-            for (int column = 0; column < this.scale; column++) {
+        for (int line = 0; line < this.height; line++) {
+            for (int column = 0; column < this.width; column++) {
                 String cell = this.cells[line][column] == 1 ? (char)27 + "[36mX" : (char)27 + "[33m0";
                 System.out.print(" " + cell + " ");
             }
             System.out.print("\n");
         }
 
-        System.out.println("\nSTEP: " + (this.step + 1));
+        System.out.println("\nGENERATION: " + (this.step + 1));
+        System.out.println("CELLS: " + liveCellCounter());
+    }
+
+    private int liveCellCounter() {
+        int counter = 0;
+
+        for (int[] line : this.cells) {
+            for (int cell : line) {
+                if (cell == 1) counter++;
+            }
+        }
+
+        return counter;
     }
 }

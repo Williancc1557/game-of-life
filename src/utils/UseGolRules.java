@@ -1,44 +1,61 @@
 package utils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class UseGolRules {
     public int[][] matrix;
+    public int heigth;
+    public int width;
 
-    public UseGolRules(int[][] matrix) {
+    public UseGolRules(int[][] matrix, int width, int height) {
         this.matrix = matrix;
+        this.width = width;
+        this.heigth = height;
     }
 
     public int[][] buildMatrix() {
-        List<List<Integer>> cellsToDelete = deleteCells();
-        for (List<Integer> cellLocation : cellsToDelete) {
-            for (int i : cellLocation) {
-                System.out.println(i);
-            }
-        }
-        //reviveCells();
+        List<List<Integer>> cellsToDelete = deleteCells(); // [[linha, coluna] [linha, coluna]]
+        List<List<Integer>> cellsToRevive = reviveCells();
 
-       return this.matrix;
+        for (List<Integer> cellLocation : cellsToRevive) {
+            this.matrix[cellLocation.get(0)][cellLocation.get(1)] = 1;
+        }
+
+        for (List<Integer> cellLocation : cellsToDelete) {
+            this.matrix[cellLocation.get(0)][cellLocation.get(1)] = 0;
+        }
+
+        return this.matrix;
     }
 
-    private void reviveCells() {
-        for (int line = 0; line < this.matrix.length; line++) {
-            for (int column = 0; column < this.matrix.length; column++) {
-                boolean revive = isCellToRevive(line, column);
-                if (revive) {
-                    this.matrix[line][column] = 1;
-                };
+    private List<List<Integer>> reviveCells() {
+        List<List<Integer>> cellsToRevive = new ArrayList<>();
+
+        for (int line = 0; line < this.heigth; line++) {
+            for (int column = 0; column < this.width; column++) {
+                boolean isDeadCell = this.matrix[line][column] == 0;
+                if (isDeadCell) {
+                    boolean revive = isCellToRevive(line, column);
+                    if (revive) {
+                        List<Integer> lineAndColumn = new ArrayList<>();
+                        lineAndColumn.add(line);
+                        lineAndColumn.add(column);
+
+                        cellsToRevive.add(lineAndColumn);
+                    };
+                }
             }
         }
+
+        return cellsToRevive;
     }
 
     private List<List<Integer>> deleteCells() {
         List<List<Integer>> cellsToDelete = new ArrayList<>();
 
-        for (int line = 0; line < this.matrix.length; line++) {
-            for (int column = 0; column < this.matrix.length; column++) {
+        for (int line = 0; line < this.heigth; line++) {
+            for (int column = 0; column < this.width; column++) {
                 boolean isLivingCell = this.matrix[line][column] == 1;
                 if (isLivingCell) {
                     boolean delete = isCellToDelete(line, column);
@@ -110,7 +127,7 @@ public class UseGolRules {
     }
 
     private boolean isInTheBottom(int line) {
-        return line == this.matrix.length - 1;
+        return line == this.heigth - 1;
     }
 
     private boolean isInTheLeft(int column) {
@@ -118,7 +135,7 @@ public class UseGolRules {
     }
 
     private boolean isInTheRight(int column) {
-        return column == this.matrix.length - 1;
+        return column == this.width - 1;
     }
 
     private int downCellsChecker(int line, int column) {
