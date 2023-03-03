@@ -16,14 +16,9 @@ public class GameOfLife {
             return;
         }
 
-        if (!isWidthCorrect(width) || !isHeightCorrect(height)) {
-            System.out.println("Invalid width or height.\n" +
-                    "correct options:\n" +
-                    "height: 10,20,40\n" +
-                    "width: 10,20,40,80");
+        if (!isScaleCorrect(width, height)) {
             return;
         }
-
 
         int speed = Integer.parseInt(getParamValue(args, "s"));
         if (!isSpeedCorrect(speed)) {
@@ -89,6 +84,18 @@ public class GameOfLife {
         }
 
         return false;
+    }
+
+    public static boolean isScaleCorrect(int width, int height) {
+        if (!isWidthCorrect(width) || !isHeightCorrect(height)) {
+            System.out.println("Invalid width or height.\n" +
+                    "correct options:\n" +
+                    "height: 10,20,40\n" +
+                    "width: 10,20,40,80");
+            return false;
+        }
+
+        return true;
     }
 
     public static boolean isWidthCorrect(int width) {
