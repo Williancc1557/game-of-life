@@ -24,7 +24,13 @@ public class GameOfLife {
             return;
         }
 
+
         int speed = Integer.parseInt(getParamValue(args, "s"));
+        if (!isSpeedCorrect(speed)) {
+            System.out.println("Speed just between 250 and 1000.");
+            return;
+        }
+
         int limit = Integer.parseInt(getParamValue(args, "g"));
 
         Grid grid = new Grid(cellsPosition, speed, limit, width, height);
@@ -105,5 +111,9 @@ public class GameOfLife {
         }
 
         return valuesAllowed.contains(height);
+    }
+
+    public static boolean isSpeedCorrect(int speed) {
+        return speed >= 250 && speed <= 1000;
     }
 }
